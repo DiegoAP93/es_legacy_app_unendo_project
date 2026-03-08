@@ -2,6 +2,8 @@ package com.eslegacy.admin.view;
 
 import javax.swing.*;
 import java.awt.*;
+import com.eslegacy.admin.service.ApiClient;
+import com.eslegacy.admin.model.LoginResponse;
 
 public class LoginView extends JFrame {
 
@@ -42,7 +44,7 @@ public class LoginView extends JFrame {
         panelLogin.add(lblTitulo, gbc);
 
         // Usuario
-        JLabel lblUsuario = new JLabel("NOMBRE USUARIO");
+        JLabel lblUsuario = new JLabel("USUARIO");
         lblUsuario.setForeground(new Color(212,160,60));
 
         gbc.gridy = 1;
@@ -74,11 +76,42 @@ public class LoginView extends JFrame {
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
         panelLogin.add(btnLogin, gbc);
+        
+        btnLogin.addActionListener(e -> hacerLogin());
 
         add(panelLogin);
     }
 
-    public JTextField getTxtUsuario() {
+    private void hacerLogin() {
+
+        String username = txtUsuario.getText();
+        String password = new String(txtPassword.getPassword());
+
+        LoginResponse response = ApiClient.login(username, password);
+
+        if (response == null) {
+            JOptionPane.showMessageDialog(this, "Error de conexión con el servidor.");
+            return;
+        }
+
+        if(!"ADMIN".equals(response.getRol())){
+
+            JOptionPane.showMessageDialog(this,
+                    "No tienes permisos de administrador");
+
+            return;
+        }
+
+        dispose();
+
+        AdminDashboard dashboard =
+                new AdminDashboard(response.getUsername());
+
+        dashboard.setVisible(true);
+
+    }
+
+	public JTextField getTxtUsuario() {
         return txtUsuario;
     }
 
