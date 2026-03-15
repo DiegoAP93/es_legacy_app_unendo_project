@@ -3,6 +3,8 @@ package com.eslegacy.admin.view;
 import javax.swing.*;
 import java.awt.*;
 import com.eslegacy.admin.service.ApiClient;
+import com.eslegacy.admin.util.DialogUtils;
+import com.eslegacy.admin.util.UIStyle;
 import com.eslegacy.admin.model.LoginResponse;
 
 public class LoginView extends JFrame {
@@ -26,7 +28,7 @@ public class LoginView extends JFrame {
         // Panel central oscuro
         JPanel panelLogin = new JPanel();
         panelLogin.setPreferredSize(new Dimension(300, 300));
-        panelLogin.setBackground(new Color(45,45,45));
+        panelLogin.setBackground(UIStyle.DARK_BG);
         panelLogin.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -35,8 +37,7 @@ public class LoginView extends JFrame {
 
         // Título
         JLabel lblTitulo = new JLabel("INICIO DE SESIÓN", SwingConstants.CENTER);
-        lblTitulo.setForeground(new Color(212,160,60));
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
+        lblTitulo.setForeground(UIStyle.TEXT_GOLD);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -45,7 +46,7 @@ public class LoginView extends JFrame {
 
         // Usuario
         JLabel lblUsuario = new JLabel("USUARIO");
-        lblUsuario.setForeground(new Color(212,160,60));
+        lblUsuario.setForeground(UIStyle.TEXT_GOLD);
 
         gbc.gridy = 1;
         gbc.gridwidth = 2;
@@ -58,7 +59,7 @@ public class LoginView extends JFrame {
 
         // Password
         JLabel lblPassword = new JLabel("CONTRASEÑA");
-        lblPassword.setForeground(new Color(212,160,60));
+        lblPassword.setForeground(UIStyle.TEXT_GOLD);
 
         gbc.gridy = 3;
         panelLogin.add(lblPassword, gbc);
@@ -70,7 +71,8 @@ public class LoginView extends JFrame {
 
         // Botón
         btnLogin = new JButton("ENTRAR");
-        btnLogin.setBackground(new Color(212,160,60));
+        btnLogin.setBackground(UIStyle.GOLD_BG);
+        btnLogin.setForeground(UIStyle.TEXT_DARK);
 
         gbc.gridy = 5;
         gbc.fill = GridBagConstraints.NONE;
@@ -90,13 +92,13 @@ public class LoginView extends JFrame {
         LoginResponse response = ApiClient.login(username, password);
 
         if (response == null) {
-            JOptionPane.showMessageDialog(this, "Error de conexión con el servidor.");
+            DialogUtils.showError(this, "Error de conexión con el servidor.");
             return;
         }
 
         if(!"ADMIN".equals(response.getRol())){
 
-            JOptionPane.showMessageDialog(this,
+            DialogUtils.showWarning(this,
                     "No tienes permisos de administrador");
 
             return;
