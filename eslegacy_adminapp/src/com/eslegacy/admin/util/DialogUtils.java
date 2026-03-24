@@ -5,72 +5,93 @@ import java.awt.*;
 
 public class DialogUtils {
 
-    public static void showInfo(Component parent, String message) {
+	public static void showInfo(Component parent, String message) {
 
-        applyStyle();
+	    JOptionPane pane = new JOptionPane(
+	            message,
+	            JOptionPane.INFORMATION_MESSAGE
+	    );
 
-        JOptionPane.showMessageDialog(
-                parent,
-                createStyledLabel(message),
-                "Información",
-                JOptionPane.INFORMATION_MESSAGE
-        );
-    }
+	    JDialog dialog = createStyledDialog(parent, pane, "Información");
+	    dialog.setVisible(true);
+	}
 
-    public static void showError(Component parent, String message) {
+	public static void showError(Component parent, String message) {
 
-        applyStyle();
+	    JOptionPane pane = new JOptionPane(
+	            message,
+	            JOptionPane.ERROR_MESSAGE
+	    );
 
-        JOptionPane.showMessageDialog(
-                parent,
-                createStyledLabel(message),
-                "Error",
-                JOptionPane.ERROR_MESSAGE
-        );
-    }
+	    JDialog dialog = createStyledDialog(parent, pane, "Error");
+	    dialog.setVisible(true);
+	}
 
-    public static void showWarning(Component parent, String message) {
+	public static void showWarning(Component parent, String message) {
 
-        applyStyle();
+	    JOptionPane pane = new JOptionPane(
+	            message,
+	            JOptionPane.WARNING_MESSAGE
+	    );
 
-        JOptionPane.showMessageDialog(
-                parent,
-                createStyledLabel(message),
-                "Aviso",
-                JOptionPane.WARNING_MESSAGE
-        );
-    }
+	    JDialog dialog = createStyledDialog(parent, pane, "Aviso");
+	    dialog.setVisible(true);
+	}
 
     public static boolean confirm(Component parent, String message, String title) {
 
-        applyStyle();
-
-        int result = JOptionPane.showConfirmDialog(
-                parent,
-                createStyledLabel(message),
-                title,
+        JOptionPane pane = new JOptionPane(
+                message,
+                JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.YES_NO_OPTION
         );
 
-        return result == JOptionPane.YES_OPTION;
+        JDialog dialog = createStyledDialog(parent, pane, title);
+        dialog.setVisible(true);
+
+        Object result = pane.getValue();
+
+        return result != null && (int) result == JOptionPane.YES_OPTION;
     }
+    
+    private static JDialog createStyledDialog(Component parent, JOptionPane pane, String title) {
 
-    private static JLabel createStyledLabel(String text) {
+        JDialog dialog = pane.createDialog(parent, title);
 
-        JLabel label = new JLabel(text);
-        label.setForeground(UIStyle.TEXT_GOLD);
+        dialog.getContentPane().setBackground(UIStyle.DARK_BG);
 
-        return label;
+        dialog.getRootPane().setBackground(UIStyle.DARK_BG);
+
+        pane.setBackground(UIStyle.DARK_BG);
+        pane.setOpaque(true);
+
+        ((JComponent) dialog.getContentPane()).setOpaque(true);
+
+        styleComponents(pane);
+
+        return dialog;
     }
+    
+    private static void styleComponents(Component comp) {
 
-    private static void applyStyle() {
+        if (comp instanceof JPanel) {
+            comp.setBackground(UIStyle.DARK_BG);
+        }
 
-        UIManager.put("OptionPane.background", UIStyle.DARK_BG);
-        UIManager.put("Panel.background", UIStyle.DARK_BG);
+        if (comp instanceof JLabel) {
+            comp.setForeground(UIStyle.TEXT_GOLD);
+        }
 
-        UIManager.put("OptionPane.messageForeground", UIStyle.TEXT_GOLD);
+        if (comp instanceof JButton btn) {
+            btn.setBackground(UIStyle.GOLD_BG);
+            btn.setForeground(UIStyle.TEXT_DARK);
+            btn.setFocusPainted(false);
+        }
 
-        UIManager.put("Button.background", UIStyle.GOLD_BG);
-        UIManager.put("Button.foreground", UIStyle.TEXT_DARK);
+        if (comp instanceof Container container) {
+            for (Component c : container.getComponents()) {
+                styleComponents(c);
+            }
+        }
     }
 }

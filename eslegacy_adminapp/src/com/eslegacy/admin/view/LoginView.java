@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import com.eslegacy.admin.service.ApiClient;
 import com.eslegacy.admin.util.DialogUtils;
+import com.eslegacy.admin.util.FontManager;
 import com.eslegacy.admin.util.UIStyle;
 import com.eslegacy.admin.model.LoginResponse;
 
@@ -38,6 +39,7 @@ public class LoginView extends JFrame {
         // Título
         JLabel lblTitulo = new JLabel("INICIO DE SESIÓN", SwingConstants.CENTER);
         lblTitulo.setForeground(UIStyle.TEXT_GOLD);
+        lblTitulo.setFont(FontManager.title().deriveFont(24f));
 
         gbc.gridx = 0;
         gbc.gridy = 0;

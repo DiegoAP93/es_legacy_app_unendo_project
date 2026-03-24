@@ -94,12 +94,48 @@ public class AdminDashboard extends JFrame {
 
 	private JButton createMenuButton(String text) {
 
-        JButton btn = new JButton(text);
-        btn.setBackground(UIStyle.GOLD_BG);
-        btn.setFocusPainted(false);
-
-        return btn;
+		JButton btn = new JButton(text);
+	    btn.setBackground(UIStyle.GOLD_BG);
+	    btn.setForeground(UIStyle.TEXT_DARK);
+	    btn.setFocusPainted(false);
+	    btn.setBorder(BorderFactory.createCompoundBorder(
+	    	    BorderFactory.createLineBorder(UIStyle.DARK_BG),
+	    	    BorderFactory.createEmptyBorder(15, 20, 15, 20)
+	    	));
+	    btn.setHorizontalAlignment(SwingConstants.LEFT);
+	    
+	    return btn;
     }
+	
+	private JButton createActionButton(String text) {
+
+	    JButton btn = new JButton(text);
+	    btn.setBackground(UIStyle.GOLD_BG);
+	    btn.setForeground(UIStyle.TEXT_DARK);
+	    btn.setFocusPainted(false);
+	    btn.setBorder(BorderFactory.createCompoundBorder(
+	    	    BorderFactory.createLineBorder(UIStyle.DARK_BG),
+	    	    BorderFactory.createEmptyBorder(15, 20, 15, 20)
+	    	));
+	    btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+	    
+	    return btn;
+	}
+	
+	private JButton createDangerButton(String text) {
+
+	    JButton btn = new JButton(text);
+	    btn.setBackground(UIStyle.DANGER_RED);
+	    btn.setForeground(Color.WHITE);
+	    btn.setFocusPainted(false);
+	    btn.setBorder(BorderFactory.createCompoundBorder(
+	    	    BorderFactory.createLineBorder(UIStyle.DARK_BG),
+	    	    BorderFactory.createEmptyBorder(15, 20, 15, 20)
+	    	));
+	    btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+	    
+	    return btn;
+	}
 
     private JPanel createContent(String username) {
 
@@ -125,15 +161,26 @@ public class AdminDashboard extends JFrame {
     private JPanel createCrudPanel() {
     	// TODO estilos del panel y botones.
         crudPanel = new JPanel();
+        crudPanel.setVisible(false);
         crudPanel.setPreferredSize(new Dimension(200, 600));
-        crudPanel.setLayout(new GridLayout(6,1,10,10));
+        crudPanel.setLayout(new BoxLayout(crudPanel, BoxLayout.Y_AXIS));
+        
+        crudPanel.setBackground(Color.WHITE);
+        crudPanel.setBorder(BorderFactory.createCompoundBorder(
+        	    BorderFactory.createMatteBorder(0, 1, 0, 0, Color.LIGHT_GRAY),
+        	    BorderFactory.createEmptyBorder(20, 10, 20, 10)
+        	));
 
-        crudPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
+        crudPanel.add(createActionButton("Crear"));
+        crudPanel.add(Box.createVerticalStrut(10));
 
-        crudPanel.add(new JButton("Crear"));
-        crudPanel.add(new JButton("Editar"));
-        crudPanel.add(new JButton("Eliminar"));
-        crudPanel.add(new JButton("Ver Detalle"));
+        crudPanel.add(createActionButton("Editar"));
+        crudPanel.add(Box.createVerticalStrut(10));
+
+        crudPanel.add(createDangerButton("Eliminar"));
+        crudPanel.add(Box.createVerticalStrut(10));
+
+        crudPanel.add(createActionButton("Ver Detalle"));
 
         return crudPanel;
     }
@@ -145,5 +192,46 @@ public class AdminDashboard extends JFrame {
 
         contentPanel.add(panel, vista);
         cardLayout.show(contentPanel, vista);
+
+        configurarCrudPanel(vista);
+        crudPanel.setVisible(true);
+    }
+    
+    private void configurarCrudPanel(String vista) {
+
+        crudPanel.removeAll();
+
+        switch (vista) {
+            case "PERSONAJES":
+                crudPanel.add(createActionButton("Añadir Personaje"));
+                crudPanel.add(createActionButton("Editar Personaje"));
+                crudPanel.add(createDangerButton("Eliminar Personaje"));
+                crudPanel.add(createActionButton("Filtrar"));
+                break;
+
+            case "OBJETOS":
+                crudPanel.add(createActionButton("Añadir Objeto"));
+                crudPanel.add(createActionButton("Editar Objeto"));
+                crudPanel.add(createDangerButton("Eliminar Objeto"));
+                crudPanel.add(createActionButton("Filtrar"));
+                break;
+
+            case "ENEMIGOS":
+                crudPanel.add(createActionButton("Añadir Enemigo"));
+                crudPanel.add(createActionButton("Editar Enemigo"));
+                crudPanel.add(createDangerButton("Eliminar Enemigo"));
+                crudPanel.add(createActionButton("Filtrar"));
+                break;
+
+            case "USUARIOS":
+                crudPanel.add(createActionButton("Añadir Usuario"));
+                crudPanel.add(createActionButton("Editar Usuario"));
+                crudPanel.add(createDangerButton("Bloquear Usuario"));
+                crudPanel.add(createDangerButton("Elimina Usuario"));
+                break;
+        }
+
+        crudPanel.revalidate();
+        crudPanel.repaint();
     }
 }
