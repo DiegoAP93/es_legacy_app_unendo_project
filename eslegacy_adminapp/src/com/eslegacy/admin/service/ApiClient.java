@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import com.eslegacy.admin.model.LoginResponse;
+import com.eslegacy.admin.model.Personaje;
 import com.google.gson.Gson;
 
 public class ApiClient {
@@ -58,5 +59,43 @@ public class ApiClient {
         }
 
         return null;
+    }
+    
+    public static Personaje[] getPersonajes() {
+
+        try {
+
+            URL url = new URL("http://localhost:8080/personajes");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            int responseCode = conn.getResponseCode();
+
+            if (responseCode == 200) {
+
+                BufferedReader br = new BufferedReader(
+                        new InputStreamReader(conn.getInputStream())
+                );
+
+                StringBuilder response = new StringBuilder();
+                String line;
+
+                while ((line = br.readLine()) != null) {
+                    response.append(line);
+                }
+
+                br.close();
+
+                Gson gson = new Gson();
+                return gson.fromJson(response.toString(), Personaje[].class);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new Personaje[0];
     }
 }

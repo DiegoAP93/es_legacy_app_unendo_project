@@ -1,7 +1,10 @@
 package com.eslegacy.admin.view;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
+import com.eslegacy.admin.model.Personaje;
+import com.eslegacy.admin.service.ApiClient;
 import com.eslegacy.admin.util.DialogUtils;
 import com.eslegacy.admin.util.UIStyle;
 
@@ -159,7 +162,6 @@ public class AdminDashboard extends JFrame {
     }
     
     private JPanel createCrudPanel() {
-    	// TODO estilos del panel y botones.
         crudPanel = new JPanel();
         crudPanel.setVisible(false);
         crudPanel.setPreferredSize(new Dimension(200, 600));
@@ -186,15 +188,70 @@ public class AdminDashboard extends JFrame {
     }
     
     private void mostrarVista(String vista) {
+        for (Component comp : contentPanel.getComponents()) {
+            if (vista.equals(comp.getName())) {
+                cardLayout.show(contentPanel, vista);
+                return;
+            }
+        }
 
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Vista: " + vista));
+        JPanel panel;
+
+        switch (vista) {
+            case "PERSONAJES":
+                panel = createPersonajesView();
+                break;
+
+            default:
+                panel = new JPanel();
+                panel.add(new JLabel("Vista: " + vista));
+                break;
+        }
+
+        panel.setName(vista);
 
         contentPanel.add(panel, vista);
         cardLayout.show(contentPanel, vista);
 
         configurarCrudPanel(vista);
         crudPanel.setVisible(true);
+    }
+    
+    private JPanel createPersonajesView() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+
+        String[] columnas = {"ID", "Nombre", "Rareza", "Clase"};
+
+        DefaultTableModel model = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // 🔒 no editable
+            }
+        };
+
+        Personaje[] personajes = ApiClient.getPersonajes();
+
+        for (Personaje p : personajes) {
+            model.addRow(new Object[]{
+                p.getIdPersonaje(),
+                p.getNombre(),
+                p.getRareza(),
+                p.getClase()
+            });
+        }
+        
+        JTable table = new JTable(model);
+        
+        table.setFillsViewportHeight(true);
+        table.setRowHeight(25);
+        table.getTableHeader().setReorderingAllowed(false);
+
+        JScrollPane scroll = new JScrollPane(table);
+
+        panel.add(scroll, BorderLayout.CENTER);
+
+        return panel;
     }
     
     private void configurarCrudPanel(String vista) {
