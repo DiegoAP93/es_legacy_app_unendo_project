@@ -2,12 +2,13 @@ package com.eslegacy.admin.view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import com.eslegacy.admin.model.Personaje;
+import com.eslegacy.admin.model.Objeto;
+import com.eslegacy.admin.model.Enemigo;
+import com.eslegacy.admin.model.Jugador;
 import com.eslegacy.admin.service.ApiClient;
 import com.eslegacy.admin.util.DialogUtils;
 import com.eslegacy.admin.util.UIStyle;
-
 import java.awt.*;
 
 public class AdminDashboard extends JFrame {
@@ -201,6 +202,15 @@ public class AdminDashboard extends JFrame {
             case "PERSONAJES":
                 panel = createPersonajesView();
                 break;
+            case "OBJETOS":
+            	panel = createObjetosView();
+            	break;
+            case "ENEMIGOS":
+            	panel = createEnemigosView();
+            	break;
+            case "USUARIOS":
+            	panel = createJugadoresView();
+            	break;
 
             default:
                 panel = new JPanel();
@@ -226,7 +236,7 @@ public class AdminDashboard extends JFrame {
         DefaultTableModel model = new DefaultTableModel(columnas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // 🔒 no editable
+                return false;
             }
         };
 
@@ -238,6 +248,116 @@ public class AdminDashboard extends JFrame {
                 p.getNombre(),
                 p.getRareza(),
                 p.getClase()
+            });
+        }
+        
+        JTable table = new JTable(model);
+        
+        table.setFillsViewportHeight(true);
+        table.setRowHeight(25);
+        table.getTableHeader().setReorderingAllowed(false);
+
+        JScrollPane scroll = new JScrollPane(table);
+
+        panel.add(scroll, BorderLayout.CENTER);
+
+        return panel;
+    }
+    
+    private JPanel createObjetosView() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+
+        String[] columnas = {"ID", "Nombre", "Categoría", "Precio"};
+
+        DefaultTableModel model = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        Objeto[] objetos = ApiClient.getObjetos();
+
+        for (Objeto o : objetos) {
+            model.addRow(new Object[]{
+                o.getIdObjeto(),
+                o.getNombre(),
+                o.getCategoria(),
+                o.getPrecio()
+            });
+        }
+        
+        JTable table = new JTable(model);
+        
+        table.setFillsViewportHeight(true);
+        table.setRowHeight(25);
+        table.getTableHeader().setReorderingAllowed(false);
+
+        JScrollPane scroll = new JScrollPane(table);
+
+        panel.add(scroll, BorderLayout.CENTER);
+
+        return panel;
+    }
+    
+    private JPanel createEnemigosView() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+
+        String[] columnas = {"ID", "Nombre", "Ejemplos de habilidades"};
+
+        DefaultTableModel model = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        Enemigo[] enemigos = ApiClient.getEnemigos();
+
+        for (Enemigo e : enemigos) {
+            model.addRow(new Object[]{
+                e.getIdEnemigo(),
+                e.getNombre(),
+                e.getEjemplosHabilidades()
+            });
+        }
+        
+        JTable table = new JTable(model);
+        
+        table.setFillsViewportHeight(true);
+        table.setRowHeight(25);
+        table.getTableHeader().setReorderingAllowed(false);
+
+        JScrollPane scroll = new JScrollPane(table);
+
+        panel.add(scroll, BorderLayout.CENTER);
+
+        return panel;
+    }
+    
+    private JPanel createJugadoresView() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+
+        String[] columnas = {"Username", "Nombre Completo", "Correo", "Activo"};
+
+        DefaultTableModel model = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        Jugador[] jugadores = ApiClient.getJugadores();
+
+        for (Jugador j : jugadores) {
+            model.addRow(new Object[]{
+                j.getNombreUsuario(),
+                j.getNombreCompleto(),
+                j.getCorreo(),
+                j.isActivo() ? "Activo" : "Inactivo"
             });
         }
         
