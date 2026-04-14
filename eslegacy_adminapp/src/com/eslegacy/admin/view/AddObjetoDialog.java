@@ -2,6 +2,7 @@ package com.eslegacy.admin.view;
 
 import javax.swing.*;
 import com.eslegacy.admin.service.ApiClient;
+import com.eslegacy.admin.util.DialogUtils;
 import com.eslegacy.admin.util.UIStyle;
 import java.awt.*;
 
@@ -13,7 +14,7 @@ public class AddObjetoDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTextField nombreField;
     private JTextArea descripcionArea;
-    private JTextField categoriaField;
+    private JComboBox<String> categoriaCombo;
     private JTextField precioField;
 
     private Runnable onSuccess;
@@ -39,7 +40,15 @@ public class AddObjetoDialog extends JDialog {
 
         nombreField = new JTextField();
         descripcionArea = new JTextArea(3, 20);
-        categoriaField = new JTextField();
+        categoriaCombo = new JComboBox<>(new String[]{
+        	    "Arma",
+        	    "Armadura",
+        	    "Material",
+        	    "Accesorio",
+        	    "Consumible",
+        	    "Importante",
+        	    "Desarrollo de PJ"
+        	});
         precioField = new JTextField();
 
         panel.add(createLabel("Nombre:"));
@@ -49,7 +58,7 @@ public class AddObjetoDialog extends JDialog {
         panel.add(new JScrollPane(descripcionArea));
 
         panel.add(createLabel("Categoría:"));
-        panel.add(categoriaField);
+        panel.add(categoriaCombo);
 
         panel.add(createLabel("Precio:"));
         panel.add(precioField);
@@ -90,7 +99,7 @@ public class AddObjetoDialog extends JDialog {
 
         String nombre = nombreField.getText();
         String descripcion = descripcionArea.getText();
-        String categoria = categoriaField.getText();
+        String categoria = (String) categoriaCombo.getSelectedItem();
 
         Integer precio = null;
 
@@ -99,14 +108,14 @@ public class AddObjetoDialog extends JDialog {
                 precio = Integer.parseInt(precioField.getText());
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Precio inválido");
+            DialogUtils.showError(this, "Precio inválido");
             return;
         }
 
         boolean creado = ApiClient.crearObjeto(nombre, descripcion, categoria, precio);
 
         if (creado) {
-            JOptionPane.showMessageDialog(this, "Objeto creado correctamente");
+        	DialogUtils.showInfo(this, "Objeto creado correctamente.");
 
             if (onSuccess != null) {
                 onSuccess.run();
@@ -114,7 +123,7 @@ public class AddObjetoDialog extends JDialog {
 
             dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Error al crear objeto");
+            DialogUtils.showError(this, "Error al crear objeto");
         }
     }
 }
