@@ -216,4 +216,92 @@ public class ApiClient {
 
         return new Jugador[0];
     }
+    
+    public static boolean crearJugador(String username, String password,
+			String nombre, String correo, String rol) {
+
+		try {
+
+			URL url = new URL("http://localhost:8080/jugadores");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setDoOutput(true);
+
+			String jsonInput = String.format(
+					"{\"username\":\"%s\",\"password\":\"%s\",\"nombreCompleto\":\"%s\",\"correo\":\"%s\",\"rol\":\"%s\"}",
+					username, password, nombre, correo, rol);
+
+			OutputStream os = conn.getOutputStream();
+			os.write(jsonInput.getBytes());
+			os.flush();
+			os.close();
+
+			int responseCode = conn.getResponseCode();
+
+			return responseCode == 200;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+    
+    public static boolean bloquearUsuario(String username) {
+        try {
+            URL url = new URL("http://localhost:8080/jugadores/" + username + "/bloquear");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("PUT");
+
+            return conn.getResponseCode() == 200;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static boolean eliminarUsuario(String username) {
+        try {
+            URL url = new URL("http://localhost:8080/jugadores/" + username + "/eliminar");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("PUT");
+
+            return conn.getResponseCode() == 200;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+		}
+	}
+
+	public static boolean crearObjeto(String nombre, String descripcion, String categoria, Integer precio) {
+
+		try {
+
+			URL url = new URL("http://localhost:8080/objetos");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setDoOutput(true);
+
+			String json = String.format("{\"nombre\":\"%s\",\"descripcion\":\"%s\",\"categoria\":\"%s\",\"precio\":%s}",
+					nombre, descripcion, categoria, precio != null ? precio : "null");
+
+			OutputStream os = conn.getOutputStream();
+			os.write(json.getBytes());
+			os.flush();
+			os.close();
+
+			return conn.getResponseCode() == 200;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+}
 }

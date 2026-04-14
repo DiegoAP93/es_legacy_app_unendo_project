@@ -33,6 +33,7 @@ public class AdminDashboard extends JFrame {
         add(createHeader(), BorderLayout.NORTH);
         add(createSidebar(), BorderLayout.WEST);
         add(createContent(username), BorderLayout.CENTER);
+        
     }
 
     private JPanel createHeader() {
@@ -190,10 +191,12 @@ public class AdminDashboard extends JFrame {
     
     private void mostrarVista(String vista) {
         for (Component comp : contentPanel.getComponents()) {
-            if (vista.equals(comp.getName())) {
-                cardLayout.show(contentPanel, vista);
-                return;
-            }
+        	if (vista.equals(comp.getName())) {
+        	    cardLayout.show(contentPanel, vista);
+        	    configurarCrudPanel(vista);
+        	    crudPanel.setVisible(true);
+        	    return;
+        	}
         }
 
         JPanel panel;
@@ -357,7 +360,9 @@ public class AdminDashboard extends JFrame {
                 j.getNombreUsuario(),
                 j.getNombreCompleto(),
                 j.getCorreo(),
-                j.isActivo() ? "Activo" : "Inactivo"
+                !j.isActivo() ? "Eliminado"
+                		: j.isBloqueado() ? "Bloqueado"
+                		: "Activo"
             });
         }
         
@@ -372,43 +377,106 @@ public class AdminDashboard extends JFrame {
         panel.add(scroll, BorderLayout.CENTER);
 
         return panel;
-    }
+    }   
     
     private void configurarCrudPanel(String vista) {
 
         crudPanel.removeAll();
 
+        crudPanel.add(Box.createVerticalStrut(10));
+
         switch (vista) {
             case "PERSONAJES":
-                crudPanel.add(createActionButton("Añadir Personaje"));
-                crudPanel.add(createActionButton("Editar Personaje"));
-                crudPanel.add(createDangerButton("Eliminar Personaje"));
-                crudPanel.add(createActionButton("Filtrar"));
+                addCrudButton("Añadir Personaje");
+                addCrudButton("Editar Personaje");
+                addDangerCrudButton("Eliminar Personaje");
+                addCrudButton("Filtrar");
                 break;
 
             case "OBJETOS":
-                crudPanel.add(createActionButton("Añadir Objeto"));
-                crudPanel.add(createActionButton("Editar Objeto"));
-                crudPanel.add(createDangerButton("Eliminar Objeto"));
-                crudPanel.add(createActionButton("Filtrar"));
+            	JButton objetoAddBtn = createActionButton("Añadir Objeto");
+
+            	objetoAddBtn.addActionListener(e -> {
+            	    new AddObjetoDialog(this, () -> {
+            	        refrescarVista("OBJETOS");
+            	    }).setVisible(true);
+            	});
+
+            	crudPanel.add(objetoAddBtn);
+            	crudPanel.add(Box.createVerticalStrut(10));
+                addCrudButton("Editar Objeto");
+                addDangerCrudButton("Eliminar Objeto");
+                addCrudButton("Filtrar");
                 break;
 
             case "ENEMIGOS":
-                crudPanel.add(createActionButton("Añadir Enemigo"));
-                crudPanel.add(createActionButton("Editar Enemigo"));
-                crudPanel.add(createDangerButton("Eliminar Enemigo"));
-                crudPanel.add(createActionButton("Filtrar"));
+                addCrudButton("Añadir Enemigo");
+                addCrudButton("Editar Enemigo");
+                addDangerCrudButton("Eliminar Enemigo");
+                addCrudButton("Filtrar");
                 break;
 
             case "USUARIOS":
-                crudPanel.add(createActionButton("Añadir Usuario"));
-                crudPanel.add(createActionButton("Editar Usuario"));
-                crudPanel.add(createDangerButton("Bloquear Usuario"));
-                crudPanel.add(createDangerButton("Elimina Usuario"));
+
+                JButton userAddBtn = createActionButton("Añadir Usuario");
+                userAddBtn.addActionListener(e -> {
+                    AddUserDialog dialog = new AddUserDialog(this, () -> {
+                        refrescarVista("USUARIOS");
+                    });
+                    dialog.setVisible(true);
+                });
+
+                crudPanel.add(userAddBtn);
+                crudPanel.add(Box.createVerticalStrut(10));
+
+                addCrudButton("Editar Usuario");
+                JButton bloquearBtn = createDangerButton("Bloquear Usuario");
+
+                bloquearBtn.addActionListener(e -> {
+                    new BlockDeleteUserDialog(this, "Bloquear Usuario", () -> {
+                        refrescarVista("USUARIOS");
+                    }).setVisible(true);
+                });
+
+                crudPanel.add(bloquearBtn);
+                crudPanel.add(Box.createVerticalStrut(10));
+
+
+                JButton eliminarBtn = createDangerButton("Eliminar Usuario");
+
+                eliminarBtn.addActionListener(e -> {
+                    new BlockDeleteUserDialog(this, "Eliminar Usuario", () -> {
+                        refrescarVista("USUARIOS");
+                    }).setVisible(true);
+                });
+
+                crudPanel.add(eliminarBtn);
                 break;
         }
 
         crudPanel.revalidate();
         crudPanel.repaint();
+    }
+    
+    private void addCrudButton(String text) {
+        crudPanel.add(createActionButton(text));
+        crudPanel.add(Box.createVerticalStrut(10));
+    }
+
+    private void addDangerCrudButton(String text) {
+        crudPanel.add(createDangerButton(text));
+        crudPanel.add(Box.createVerticalStrut(10));
+    }
+    
+    private void refrescarVista(String vista) {
+
+        for (Component comp : contentPanel.getComponents()) {
+            if (vista.equals(comp.getName())) {
+                contentPanel.remove(comp);
+                break;
+            }
+        }
+
+        mostrarVista(vista);
     }
 }
