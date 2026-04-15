@@ -404,8 +404,26 @@ public class AdminDashboard extends JFrame {
 
             	crudPanel.add(objetoAddBtn);
             	crudPanel.add(Box.createVerticalStrut(10));
-                addCrudButton("Editar Objeto");
-                addDangerCrudButton("Eliminar Objeto");
+            	JButton editBtn = createActionButton("Editar Objeto");
+
+            	editBtn.addActionListener(e -> {
+            	    new SelectObjetoDialog(this, () -> {
+            	        refrescarVista("OBJETOS");
+            	    }).setVisible(true);
+            	});
+
+            	crudPanel.add(editBtn);
+            	crudPanel.add(Box.createVerticalStrut(10));
+                JButton objetoDeleteBtn = createDangerButton("Eliminar Objeto");
+
+                objetoDeleteBtn.addActionListener(e -> {
+                    new DeleteObjetoDialog(this, () -> {
+                        refrescarVista("OBJETOS");
+                    }).setVisible(true);
+                });
+
+                crudPanel.add(objetoDeleteBtn);
+                crudPanel.add(Box.createVerticalStrut(10));
                 addCrudButton("Filtrar");
                 break;
 

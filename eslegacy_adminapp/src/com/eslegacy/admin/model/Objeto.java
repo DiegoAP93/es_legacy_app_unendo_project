@@ -3,13 +3,15 @@ package com.eslegacy.admin.model;
 public class Objeto {
 	private int idObjeto;
 	private String nombre;
+	private String descripcion;
 	private String categoria;
 	private Integer precio;
 	
-	public Objeto(int idObjeto, String nombre, String categoria, Integer precio) {
+	public Objeto(int idObjeto, String nombre, String descripcion, String categoria, Integer precio) {
 		super();
 		this.idObjeto = idObjeto;
 		this.nombre = nombre;
+		this.descripcion = descripcion;
 		this.categoria = categoria;
 		this.precio = precio;
 	}
@@ -28,6 +30,14 @@ public class Objeto {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getCategoria() {

@@ -303,5 +303,88 @@ public class ApiClient {
 			e.printStackTrace();
 			return false;
 		}
-}
+	}
+	
+	public static boolean eliminarObjeto(int id) {
+	    try {
+	        URL url = new URL("http://localhost:8080/objetos/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("DELETE");
+
+	        return conn.getResponseCode() == 204;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+	
+	public static Objeto getObjetoById(int id) {
+
+	    try {
+	        URL url = new URL("http://localhost:8080/objetos/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("GET");
+
+	        if (conn.getResponseCode() == 200) {
+
+	            BufferedReader br = new BufferedReader(
+	                    new InputStreamReader(conn.getInputStream()));
+
+	            StringBuilder response = new StringBuilder();
+	            String line;
+
+	            while ((line = br.readLine()) != null) {
+	                response.append(line);
+	            }
+
+	            br.close();
+
+	            Gson gson = new Gson();
+	            return gson.fromJson(response.toString(), Objeto.class);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
+	
+	public static boolean editarObjeto(int id, String nombre,
+            String descripcion,
+            String categoria,
+            Integer precio) {
+
+		try {
+
+			URL url = new URL("http://localhost:8080/objetos/" + id);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+			conn.setRequestMethod("PUT");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setDoOutput(true);
+
+			String json = String.format(
+				    "{\"nombre\":\"%s\",\"descripcion\":\"%s\",\"categoria\":\"%s\",\"precio\":%s}",
+				    nombre,
+				    descripcion,
+				    categoria,
+				    precio != null ? precio : "null"
+				);
+
+			OutputStream os = conn.getOutputStream();
+			os.write(json.getBytes());
+			os.flush();
+			os.close();
+
+			return conn.getResponseCode() == 200;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
