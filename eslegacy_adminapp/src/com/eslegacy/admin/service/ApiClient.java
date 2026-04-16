@@ -277,6 +277,44 @@ public class ApiClient {
             return false;
 		}
 	}
+    
+	public static boolean editarUsuario(String username, String nombre, String correo, String password) {
+
+		try {
+
+			URL url = new URL("http://localhost:8080/jugadores/" + username);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+			conn.setRequestMethod("PUT");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setDoOutput(true);
+
+			StringBuilder json = new StringBuilder();
+			json.append("{");
+			json.append("\"nombreCompleto\":\"").append(nombre).append("\",");
+			json.append("\"correo\":\"").append(correo).append("\"");
+
+			if (password != null && !password.isEmpty()) {
+				json.append(",\"password\":\"").append(password).append("\"");
+			}
+
+			json.append("}");
+
+			OutputStream os = conn.getOutputStream();
+			os.write(json.toString().getBytes());
+			os.flush();
+			os.close();
+
+			int responseCode = conn.getResponseCode();
+
+			return responseCode == 200;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
 
 	public static boolean crearObjeto(String nombre, String descripcion, String categoria, Integer precio) {
 

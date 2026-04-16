@@ -20,6 +20,8 @@ public class AdminDashboard extends JFrame {
 	private JPanel contentPanel;
 	private JPanel crudPanel;
 	private CardLayout cardLayout;
+	private JTable tablaUsuarios;
+	private Jugador[] jugadores;
 
     public AdminDashboard(String username) {
 
@@ -353,7 +355,7 @@ public class AdminDashboard extends JFrame {
             }
         };
 
-        Jugador[] jugadores = ApiClient.getJugadores();
+        jugadores = ApiClient.getJugadores();
 
         for (Jugador j : jugadores) {
             model.addRow(new Object[]{
@@ -366,13 +368,13 @@ public class AdminDashboard extends JFrame {
             });
         }
         
-        JTable table = new JTable(model);
+        tablaUsuarios = new JTable(model);
         
-        table.setFillsViewportHeight(true);
-        table.setRowHeight(25);
-        table.getTableHeader().setReorderingAllowed(false);
+        tablaUsuarios.setFillsViewportHeight(true);
+        tablaUsuarios.setRowHeight(25);
+        tablaUsuarios.getTableHeader().setReorderingAllowed(false);
 
-        JScrollPane scroll = new JScrollPane(table);
+        JScrollPane scroll = new JScrollPane(tablaUsuarios);
 
         panel.add(scroll, BorderLayout.CENTER);
 
@@ -447,7 +449,32 @@ public class AdminDashboard extends JFrame {
                 crudPanel.add(userAddBtn);
                 crudPanel.add(Box.createVerticalStrut(10));
 
-                addCrudButton("Editar Usuario");
+                JButton userEditBtn = createActionButton("Editar Usuario");
+
+                userEditBtn.addActionListener(e -> {
+
+                    int row = tablaUsuarios.getSelectedRow();
+
+                    if (row == -1) {
+                        DialogUtils.showWarning(this, "Selecciona un usuario");
+                        return;
+                    }
+
+                    Jugador j = jugadores[row];
+
+                    if (!j.isActivo()) {
+                        DialogUtils.showError(this, "No se puede editar un usuario eliminado");
+                        return;
+                    }
+
+                    new EditUserDialog(this, j, () -> {
+                        refrescarVista("USUARIOS");
+                    }).setVisible(true);
+
+                });
+
+                crudPanel.add(userEditBtn);
+                crudPanel.add(Box.createVerticalStrut(10));
                 JButton bloquearBtn = createDangerButton("Bloquear Usuario");
 
                 bloquearBtn.addActionListener(e -> {
