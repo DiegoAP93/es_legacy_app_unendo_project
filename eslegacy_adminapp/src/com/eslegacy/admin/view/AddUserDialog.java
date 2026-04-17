@@ -11,7 +11,11 @@ import java.awt.*;
 
 public class AddUserDialog extends JDialog {
 
-    private JTextField usernameField;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField usernameField;
     private JPasswordField passwordField;
     private JTextField nombreField;
     private JTextField correoField;

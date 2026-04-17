@@ -430,9 +430,36 @@ public class AdminDashboard extends JFrame {
                 break;
 
             case "ENEMIGOS":
-                addCrudButton("Añadir Enemigo");
-                addCrudButton("Editar Enemigo");
-                addDangerCrudButton("Eliminar Enemigo");
+            	JButton enemigoAddBtn = createActionButton("Añadir Enemigo");
+
+            	enemigoAddBtn.addActionListener(e -> {
+            	    new AddEnemigoDialog(this, () -> {
+            	        refrescarVista("ENEMIGOS");
+            	    }).setVisible(true);
+            	});
+
+            	crudPanel.add(enemigoAddBtn);
+            	crudPanel.add(Box.createVerticalStrut(10));
+            	JButton enemigoEditBtn = createActionButton("Editar Enemigo");
+
+            	enemigoEditBtn.addActionListener(e -> {
+            	    new SelectEnemigoDialog(this, () -> {
+            	        refrescarVista("ENEMIGOS");
+            	    }).setVisible(true);
+            	});
+
+            	crudPanel.add(enemigoEditBtn);
+            	crudPanel.add(Box.createVerticalStrut(10));
+                JButton enemigoDeleteBtn = createDangerButton("Eliminar Enemigo");
+
+                enemigoDeleteBtn.addActionListener(e -> {
+                    new DeleteEnemigoDialog(this, () -> {
+                        refrescarVista("ENEMIGOS");
+                    }).setVisible(true);
+                });
+
+                crudPanel.add(enemigoDeleteBtn);
+                crudPanel.add(Box.createVerticalStrut(10));
                 addCrudButton("Filtrar");
                 break;
 

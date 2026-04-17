@@ -425,4 +425,170 @@ public class ApiClient {
 			return false;
 		}
 	}
+	
+	public static com.eslegacy.admin.model.Enemigo crearEnemigo(
+	        String nombre,
+	        String descripcion,
+	        String habilidades) {
+
+	    try {
+
+	        URL url = new URL("http://localhost:8080/enemigos");
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Content-Type", "application/json");
+	        conn.setDoOutput(true);
+	        
+	        String json = String.format(
+	        	    "{\"nombre\":\"%s\",\"descripcion\":\"%s\",\"ejemplosHabilidades\":\"%s\"}",
+	        	    nombre,
+	        	    descripcion,
+	        	    habilidades
+	        );
+
+	        OutputStream os = conn.getOutputStream();
+	        os.write(json.getBytes());
+	        os.flush();
+	        os.close();
+
+	        int responseCode = conn.getResponseCode();
+
+	        if (responseCode == 200 || responseCode == 201) {
+
+	            BufferedReader br = new BufferedReader(
+	                    new InputStreamReader(conn.getInputStream()));
+
+	            StringBuilder response = new StringBuilder();
+	            String line;
+
+	            while ((line = br.readLine()) != null) {
+	                response.append(line);
+	            }
+
+	            br.close();
+
+	            com.google.gson.Gson gson = new com.google.gson.Gson();
+	            return gson.fromJson(response.toString(),
+	                    com.eslegacy.admin.model.Enemigo.class);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
+	
+	public static boolean asignarObjetoAEnemigo(int idEnemigo, int idObjeto) {
+
+	    try {
+
+	        URL url = new URL(
+	                "http://localhost:8080/enemigos/" +
+	                        idEnemigo +
+	                        "/objetos/" +
+	                        idObjeto
+	        );
+
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("PUT");
+
+	        return conn.getResponseCode() == 200;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return false;
+	}
+	
+	public static boolean eliminarEnemigo(int id) {
+
+	    try {
+
+	        URL url = new URL("http://localhost:8080/enemigos/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("DELETE");
+
+	        int responseCode = conn.getResponseCode();
+
+	        return responseCode == 204 || responseCode == 200;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return false;
+	}
+	
+	public static Enemigo getEnemigoById(int id) {
+
+	    try {
+
+	        URL url = new URL("http://localhost:8080/enemigos/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("GET");
+
+	        if (conn.getResponseCode() == 200) {
+
+	            BufferedReader br = new BufferedReader(
+	                    new InputStreamReader(conn.getInputStream()));
+
+	            StringBuilder response = new StringBuilder();
+	            String line;
+
+	            while ((line = br.readLine()) != null) {
+	                response.append(line);
+	            }
+
+	            br.close();
+
+	            com.google.gson.Gson gson = new com.google.gson.Gson();
+	            return gson.fromJson(response.toString(), Enemigo.class);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
+	
+	public static boolean editarEnemigo(int id, String nombre, String descripcion, String habilidades) {
+
+	    try {
+
+	        URL url = new URL("http://localhost:8080/enemigos/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("PUT");
+	        conn.setRequestProperty("Content-Type", "application/json");
+	        conn.setDoOutput(true);
+
+	        String jsonInput = String.format(
+	            "{\"nombre\":\"%s\",\"descripcion\":\"%s\",\"ejemplosHabilidades\":\"%s\"}",
+	            nombre,
+	            descripcion,
+	            habilidades
+	        );
+
+	        OutputStream os = conn.getOutputStream();
+	        os.write(jsonInput.getBytes());
+	        os.flush();
+	        os.close();
+
+	        int responseCode = conn.getResponseCode();
+
+	        return responseCode == 200;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return false;
+	}
 }

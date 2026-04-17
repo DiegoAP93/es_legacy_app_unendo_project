@@ -56,4 +56,8 @@ public class Objeto {
 		this.precio = precio;
 	}
 	
+	@Override
+	public String toString() {
+	    return nombre;
+	}
 }
