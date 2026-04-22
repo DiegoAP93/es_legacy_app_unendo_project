@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.eslegacyapp.api.model.Habilidad;
+import com.eslegacyapp.api.model.TipoHabilidad;
 import com.eslegacyapp.api.repository.HabilidadRepository;
 
 @RestController
@@ -41,5 +42,15 @@ public class HabilidadController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+    
+    @GetMapping("/tipo/{tipo}")
+    public ResponseEntity<?> getByTipo(@PathVariable String tipo) {
+        try {
+            TipoHabilidad categoria = TipoHabilidad.valueOf(tipo.toUpperCase());
+            return ResponseEntity.ok(habilidadRepository.findByCategoria(categoria));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Tipo de habilidad inválido");
+        }
     }
 }

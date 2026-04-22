@@ -85,6 +85,34 @@ public class JugadorController {
             new LoginResponse(jugador.getUsername(), jugador.getRol())
         );
     }
+    
+    @PutMapping("/{username}")
+    public ResponseEntity<?> editar(@PathVariable String username, @RequestBody Jugador cambios) {
+
+        Optional<Jugador> jugadorOpt = jugadorRepository.findById(username);
+
+        if (jugadorOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Jugador jugador = jugadorOpt.get();
+
+        if (cambios.getNombreCompleto() != null) {
+            jugador.setNombreCompleto(cambios.getNombreCompleto());
+        }
+
+        if (cambios.getCorreo() != null) {
+            jugador.setCorreo(cambios.getCorreo());
+        }
+
+        if (cambios.getPassword() != null) {
+            jugador.setPassword(encoder.encode(cambios.getPassword()));
+        }
+
+        jugadorRepository.save(jugador);
+
+        return ResponseEntity.ok(jugador);
+    }
 
     /**Desbloquear un personaje para el jugador en cuestión*/
     @PutMapping("/{username}/personajes/{idPersonaje}")
