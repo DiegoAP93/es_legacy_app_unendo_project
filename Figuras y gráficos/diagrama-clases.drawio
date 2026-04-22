@@ -266,7 +266,7 @@
           <mxGeometry height="40" width="200" y="226" as="geometry" />
         </mxCell>
         <mxCell id="P08O92vUv2xjuysvPKW4-118" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="HabilidadController" vertex="1">
-          <mxGeometry height="266" width="200" x="290" y="690" as="geometry" />
+          <mxGeometry height="306" width="200" x="290" y="690" as="geometry" />
         </mxCell>
         <mxCell id="P08O92vUv2xjuysvPKW4-119" parent="P08O92vUv2xjuysvPKW4-118" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- habilidadRepository: HabilidadRepository" vertex="1">
           <mxGeometry height="50" width="200" y="26" as="geometry" />
@@ -288,6 +288,9 @@
         </mxCell>
         <mxCell id="P08O92vUv2xjuysvPKW4-125" parent="P08O92vUv2xjuysvPKW4-118" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ ResponseEntity&amp;lt;Void&amp;gt; eliminar (int)" vertex="1">
           <mxGeometry height="40" width="200" y="226" as="geometry" />
+        </mxCell>
+        <mxCell id="3bHjOe8umwzk-z42Ubr8-2" parent="P08O92vUv2xjuysvPKW4-118" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ ResponseEntity&amp;lt;&amp;gt; getByTipo (String)" vertex="1">
+          <mxGeometry height="40" width="200" y="266" as="geometry" />
         </mxCell>
         <mxCell id="P08O92vUv2xjuysvPKW4-126" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PersonajeController" vertex="1">
           <mxGeometry height="470" width="220" y="630" as="geometry" />

@@ -2,6 +2,8 @@ package com.eslegacy.admin.view;
 
 import javax.swing.*;
 import com.eslegacy.admin.model.Habilidad;
+import com.eslegacy.admin.model.Personaje;
+import com.eslegacy.admin.service.ApiClient;
 import com.eslegacy.admin.util.DialogUtils;
 import com.eslegacy.admin.util.UIStyle;
 import java.awt.*;
@@ -147,8 +149,8 @@ public class AddPersonajeDialog extends JDialog {
         siguiente.setForeground(UIStyle.TEXT_DARK);
         atras.setBackground(UIStyle.GOLD_BG);
         atras.setForeground(UIStyle.TEXT_DARK);
-        cancelar.setBackground(UIStyle.GOLD_BG);
-        cancelar.setForeground(UIStyle.TEXT_DARK);
+        cancelar.setBackground(UIStyle.DANGER_RED);
+        cancelar.setForeground(Color.WHITE);
 
         siguiente.addActionListener(e -> {
 
@@ -220,7 +222,11 @@ public class AddPersonajeDialog extends JDialog {
 
         JLabel l = new JLabel(label);
         l.setForeground(UIStyle.GOLD_BG);
-
+        Dimension fixedLabel = new Dimension(80,15);
+        l.setPreferredSize(fixedLabel);
+        l.setMaximumSize(fixedLabel);
+        l.setMinimumSize(fixedLabel);
+        
         JButton crear = new JButton("Crear");
         crear.setBackground(UIStyle.GOLD_BG);
         crear.setForeground(UIStyle.TEXT_DARK);
@@ -245,8 +251,7 @@ public class AddPersonajeDialog extends JDialog {
             seleccionar.setBackground(UIStyle.GOLD_BG);
             seleccionar.setForeground(UIStyle.TEXT_DARK);
             
-            // TODO
-            /*seleccionar.addActionListener(e -> {
+            seleccionar.addActionListener(e -> {
                 new SelectHabilidadDialog(
                     (JFrame) SwingUtilities.getWindowAncestor(this),
                     tipo,
@@ -255,7 +260,7 @@ public class AddPersonajeDialog extends JDialog {
                         DialogUtils.showInfo(this, label + " seleccionada");
                     }
                 ).setVisible(true);
-            });*/
+            });
 
             row.add(seleccionar);
         }
@@ -263,8 +268,44 @@ public class AddPersonajeDialog extends JDialog {
         return row;
     }
     
+    /**Crea las habilidades (POST), crea el personaje con los datos básicos, y finalmente las asigna por ID.*/
     private void guardarPersonaje() {
-        DialogUtils.showInfo(this, "Aquí se guardará TODO el personaje con habilidades");
+
+        if (habilidadesSeleccionadas.size() < 8) {
+            DialogUtils.showError(this, "Faltan habilidades");
+            return;
+        }
+
+        for (Habilidad h : habilidadesSeleccionadas.values()) {
+
+            if (h.getIdHabilidad() == 0) {
+                Habilidad creada = ApiClient.crearHabilidad(h);
+                h.setIdHabilidad(creada.getIdHabilidad());
+            }
+        }
+
+        Personaje p = new Personaje();
+        p.setNombre(nombreField.getText());
+        p.setClase((String) claseCombo.getSelectedItem());
+        p.setRareza((String) rarezaCombo.getSelectedItem());
+        p.setHistoria(historiaArea.getText());
+        p.setAtaqueBasico(ataqueField.getText());
+        p.setPuntosVida(Integer.parseInt(vidaField.getText()));
+        p.setIniciativa(iniciativaField.getText());
+        p.setOrigen(origenField.getText());
+        p.setArquetipo(arquetipoField.getText());
+
+        Personaje creado = ApiClient.crearPersonaje(p);
+
+        for (Habilidad h : habilidadesSeleccionadas.values()) {
+            ApiClient.asignarHabilidad(creado.getIdPersonaje(), h.getIdHabilidad());
+        }
+
+        DialogUtils.showInfo(this, "Personaje creado correctamente");
+
+        if (onSuccess != null) onSuccess.run();
+
+        dispose();
     }
     
     private String getCurrentCard() {

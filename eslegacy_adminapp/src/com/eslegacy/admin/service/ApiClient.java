@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import com.eslegacy.admin.model.Enemigo;
+import com.eslegacy.admin.model.Habilidad;
 import com.eslegacy.admin.model.Jugador;
 import com.eslegacy.admin.model.LoginResponse;
 import com.eslegacy.admin.model.Objeto;
@@ -584,6 +585,160 @@ public class ApiClient {
 	        int responseCode = conn.getResponseCode();
 
 	        return responseCode == 200;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return false;
+	}
+	
+	public static Habilidad[] getHabilidadesPorTipo(String tipo) {
+	    try {
+	        URL url = new URL("http://localhost:8080/habilidades/tipo/" + tipo);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("GET");
+
+	        if (conn.getResponseCode() == 200) {
+
+	            BufferedReader br = new BufferedReader(
+	                    new InputStreamReader(conn.getInputStream()));
+
+	            StringBuilder response = new StringBuilder();
+	            String line;
+
+	            while ((line = br.readLine()) != null) {
+	                response.append(line);
+	            }
+
+	            br.close();
+
+	            Gson gson = new Gson();
+	            return gson.fromJson(response.toString(), Habilidad[].class);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return new Habilidad[0];
+	}
+	
+	public static Habilidad crearHabilidad(Habilidad h) {
+
+	    try {
+	        URL url = new URL("http://localhost:8080/habilidades");
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Content-Type", "application/json");
+	        conn.setDoOutput(true);
+
+	        Gson gson = new Gson();
+	        String jsonInput = gson.toJson(h);
+
+	        OutputStream os = conn.getOutputStream();
+	        os.write(jsonInput.getBytes());
+	        os.flush();
+	        os.close();
+
+	        if (conn.getResponseCode() == 200) {
+
+	            BufferedReader br = new BufferedReader(
+	                    new InputStreamReader(conn.getInputStream()));
+
+	            StringBuilder response = new StringBuilder();
+	            String line;
+
+	            while ((line = br.readLine()) != null) {
+	                response.append(line);
+	            }
+
+	            br.close();
+
+	            return gson.fromJson(response.toString(), Habilidad.class);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
+	
+	public static Personaje crearPersonaje(Personaje p) {
+
+	    try {
+	        URL url = new URL("http://localhost:8080/personajes");
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Content-Type", "application/json");
+	        conn.setDoOutput(true);
+
+	        Gson gson = new Gson();
+	        String jsonInput = gson.toJson(p);
+
+	        OutputStream os = conn.getOutputStream();
+	        os.write(jsonInput.getBytes());
+	        os.flush();
+	        os.close();
+
+	        if (conn.getResponseCode() == 200) {
+
+	            BufferedReader br = new BufferedReader(
+	                    new InputStreamReader(conn.getInputStream()));
+
+	            StringBuilder response = new StringBuilder();
+	            String line;
+
+	            while ((line = br.readLine()) != null) {
+	                response.append(line);
+	            }
+
+	            br.close();
+
+	            return gson.fromJson(response.toString(), Personaje.class);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
+	
+	public static boolean asignarHabilidad(int idPersonaje, int idHabilidad) {
+
+	    try {
+	        URL url = new URL("http://localhost:8080/personajes/" 
+	                + idPersonaje + "/habilidades/" + idHabilidad);
+
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("PUT");
+
+	        return conn.getResponseCode() == 200;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return false;
+	}
+	
+	public static boolean eliminarPersonaje(int id) {
+
+	    try {
+	        URL url = new URL("http://localhost:8080/personajes/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("DELETE");
+
+	        int responseCode = conn.getResponseCode();
+
+	        return responseCode == 200 || responseCode == 204;
 
 	    } catch (Exception e) {
 	        e.printStackTrace();

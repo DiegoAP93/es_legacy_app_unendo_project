@@ -392,13 +392,23 @@ public class AdminDashboard extends JFrame {
             	JButton personajeAddBtn = createActionButton("Añadir Personaje");
 
             	personajeAddBtn.addActionListener(e -> {
-                    new AddPersonajeDialog(this, () -> mostrarVista("PERSONAJES")).setVisible(true);
+                    new AddPersonajeDialog(this, () -> {
+                    	refrescarVista("PERSONAJES");
+                    }).setVisible(true);
                 });
 
                 crudPanel.add(personajeAddBtn);
                 crudPanel.add(Box.createVerticalStrut(10));
                 addCrudButton("Editar Personaje");
-                addDangerCrudButton("Eliminar Personaje");
+                JButton personajeDeleteBtn = createDangerButton("Eliminar Personaje");
+
+                personajeDeleteBtn.addActionListener(e -> {
+                    new DeletePersonajeDialog(this, () -> {
+                        refrescarVista("PERSONAJES");
+                    }).setVisible(true);
+                });
+                crudPanel.add(personajeDeleteBtn);
+                crudPanel.add(Box.createVerticalStrut(10));
                 addCrudButton("Filtrar");
                 break;
 

@@ -36,7 +36,7 @@ public class AddHabilidadDialog extends JDialog {
         form.add(createLabel("Descripción"));
         form.add(new JScrollPane(descripcionArea));
 
-        if (tipo.equals("ACTIVA") || tipo.equals("DEFINITIVA")) {
+        if (tipo.equals("ACTIVA")) {
             form.add(createLabel("Cooldown"));
             form.add(cooldownField);
         }

@@ -31,7 +31,11 @@ public class Personaje {
 		this.arquetipo = arquetipo;
 		this.habilidades = habilidades;
 	}
-
+	
+	public Personaje() {
+		
+	}
+	
 	public int getIdPersonaje() {
 		return idPersonaje;
 	}
