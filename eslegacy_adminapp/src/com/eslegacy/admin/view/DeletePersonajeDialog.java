@@ -56,8 +56,8 @@ public class DeletePersonajeDialog extends JDialog {
         
         eliminar.setBackground(UIStyle.GOLD_BG);
         eliminar.setForeground(UIStyle.TEXT_DARK);
-        cancelar.setBackground(UIStyle.GOLD_BG);
-        cancelar.setForeground(UIStyle.TEXT_DARK);
+        cancelar.setBackground(UIStyle.DANGER_RED);
+        cancelar.setForeground(Color.WHITE);
 
         eliminar.addActionListener(e -> eliminarPersonaje());
         cancelar.addActionListener(e -> dispose());

@@ -58,8 +58,8 @@ public class BlockDeleteUserDialog extends JDialog {
         
         ejecutar.setBackground(UIStyle.GOLD_BG);
         ejecutar.setForeground(UIStyle.TEXT_DARK);
-        cancelar.setBackground(UIStyle.GOLD_BG);
-        cancelar.setForeground(UIStyle.TEXT_DARK);
+        cancelar.setBackground(UIStyle.DANGER_RED);
+        cancelar.setForeground(Color.WHITE);
 
         ejecutar.addActionListener(e -> ejecutarAccion());
         cancelar.addActionListener(e -> dispose());

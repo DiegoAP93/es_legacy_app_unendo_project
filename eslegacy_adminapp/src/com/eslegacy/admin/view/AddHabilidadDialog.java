@@ -44,12 +44,12 @@ public class AddHabilidadDialog extends JDialog {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(UIStyle.DARK_BG);
         
-        JButton cancelar = new JButton("Cancelar");
         JButton guardar = new JButton("Guardar");
-        cancelar.setBackground(UIStyle.GOLD_BG);
-        cancelar.setForeground(UIStyle.TEXT_DARK);
+        JButton cancelar = new JButton("Cancelar");
         guardar.setBackground(UIStyle.GOLD_BG);
         guardar.setForeground(UIStyle.TEXT_DARK);
+        cancelar.setBackground(UIStyle.DANGER_RED);
+        cancelar.setForeground(Color.WHITE);
         
         guardar.addActionListener(e -> {
 

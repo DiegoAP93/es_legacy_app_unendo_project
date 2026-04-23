@@ -82,8 +82,8 @@ public class AddUserDialog extends JDialog {
         
         guardar.setBackground(UIStyle.GOLD_BG);
         guardar.setForeground(UIStyle.TEXT_DARK);
-        cancelar.setBackground(UIStyle.GOLD_BG);
-        cancelar.setForeground(UIStyle.TEXT_DARK);
+        cancelar.setBackground(UIStyle.DANGER_RED);
+        cancelar.setForeground(Color.WHITE);
 
         guardar.addActionListener(e -> guardarUsuario());
         cancelar.addActionListener(e -> dispose());

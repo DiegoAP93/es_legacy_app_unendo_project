@@ -50,7 +50,7 @@ public class AddPersonajeDialog extends JDialog {
 
 	    add(scroll, BorderLayout.CENTER);
 	    add(createButtons(), BorderLayout.SOUTH);
-
+	    
 	    pack();
 	    setMinimumSize(new Dimension(550, 650));
 	    setLocationRelativeTo(parent);
@@ -81,8 +81,9 @@ public class AddPersonajeDialog extends JDialog {
         historiaArea.setWrapStyleWord(true);
 
         JScrollPane historiaScroll = new JScrollPane(historiaArea);
-        historiaScroll.setPreferredSize(new Dimension(400, 120));
-        historiaScroll.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
+	    historiaScroll.setPreferredSize(new Dimension(400, 150));
+	    historiaScroll.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+	    historiaScroll.setMinimumSize(new Dimension(400, 150));
         panel.add(createFieldBlock("Historia:", historiaScroll));
 
         ataqueField = new JTextField();

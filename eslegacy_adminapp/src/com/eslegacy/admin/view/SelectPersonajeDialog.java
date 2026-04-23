@@ -1,27 +1,25 @@
 package com.eslegacy.admin.view;
 
 import java.awt.*;
+import java.util.function.Consumer;
 import javax.swing.*;
-import com.eslegacy.admin.model.Objeto;
+import com.eslegacy.admin.model.Personaje;
 import com.eslegacy.admin.service.ApiClient;
 import com.eslegacy.admin.util.DialogUtils;
 import com.eslegacy.admin.util.UIStyle;
 
-public class SelectObjetoDialog extends JDialog {
+public class SelectPersonajeDialog extends JDialog {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField idField;
-    private JFrame parent;
-    private Runnable onSuccess;
+	private Consumer<Personaje> onSelect;
 
-    public SelectObjetoDialog(JFrame parent, Runnable onSuccess) {
+    public SelectPersonajeDialog(JFrame parent, Consumer<Personaje> onSelect) {
         super(parent, "Seleccionar Objeto", true);
-
-        this.parent = parent;
-        this.onSuccess = onSuccess;
+        this.onSelect = onSelect;
 
         setSize(300, 150);
         setLocationRelativeTo(parent);
@@ -29,25 +27,9 @@ public class SelectObjetoDialog extends JDialog {
 
         add(createForm(), BorderLayout.CENTER);
         add(createButtons(), BorderLayout.SOUTH);
+
     }
-
-    private JPanel createForm() {
-
-        JPanel panel = new JPanel(new GridLayout(1, 2, 10, 10));
-        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-        panel.setBackground(UIStyle.DARK_BG);
-
-        JLabel label = new JLabel("ID Objeto:");
-        label.setForeground(UIStyle.GOLD_BG);
-
-        idField = new JTextField();
-
-        panel.add(label);
-        panel.add(idField);
-
-        return panel;
-    }
-
+    
     private JPanel createButtons() {
 
         JPanel panel = new JPanel();
@@ -62,7 +44,7 @@ public class SelectObjetoDialog extends JDialog {
         cancelar.setBackground(UIStyle.DANGER_RED);
         cancelar.setForeground(Color.WHITE);
 
-        continuar.addActionListener(e -> cargarObjeto());
+        continuar.addActionListener(e -> cargarPersonaje());
         cancelar.addActionListener(e -> dispose());
 
         panel.add(continuar);
@@ -70,26 +52,41 @@ public class SelectObjetoDialog extends JDialog {
 
         return panel;
     }
+    
+    private JPanel createForm() {
 
-    private void cargarObjeto() {
+        JPanel panel = new JPanel(new GridLayout(1, 2, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panel.setBackground(UIStyle.DARK_BG);
 
+        JLabel label = new JLabel("ID Personaje:");
+        label.setForeground(UIStyle.GOLD_BG);
+
+        idField = new JTextField();
+
+        panel.add(label);
+        panel.add(idField);
+
+        return panel;
+    }
+
+	private void cargarPersonaje() {
         int id;
 
         try {
             id = Integer.parseInt(idField.getText());
-        } catch (NumberFormatException e) {
-            DialogUtils.showError(this, "ID incorrecto");
+        } catch (NumberFormatException ex) {
+            DialogUtils.showError(this, "ID inválido");
             return;
         }
 
-        Objeto obj = ApiClient.getObjetoById(id);
+        Personaje p = ApiClient.getPersonajeById(id);
 
-        if (obj == null) {
-            DialogUtils.showError(this, "Objeto no encontrado");
-            return;
+        if (p != null) {
+            onSelect.accept(p);
+            dispose();
+        } else {
+            DialogUtils.showError(this, "El personaje no existe");
         }
-
-        new EditObjetoDialog(parent, obj, onSuccess).setVisible(true);
-        dispose();
-    }
+	}
 }

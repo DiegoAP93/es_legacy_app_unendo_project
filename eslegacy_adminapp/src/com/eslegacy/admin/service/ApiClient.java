@@ -13,6 +13,7 @@ import com.eslegacy.admin.model.LoginResponse;
 import com.eslegacy.admin.model.Objeto;
 import com.eslegacy.admin.model.Personaje;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 public class ApiClient {
 
@@ -745,5 +746,82 @@ public class ApiClient {
 	    }
 
 	    return false;
+	}
+	
+	public static boolean editarPersonaje(
+	        int id,
+	        String clase,
+	        String rareza,
+	        String historia,
+	        String ataque,
+	        Integer vida,
+	        String iniciativa,
+	        String origen,
+	        String arquetipo) {
+
+	    try {
+	        URL url = new URL("http://localhost:8080/personajes/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("PUT");
+	        conn.setRequestProperty("Content-Type", "application/json");
+	        conn.setDoOutput(true);
+
+	        JsonObject json = new JsonObject();
+	        json.addProperty("clase", clase);
+	        json.addProperty("rareza", rareza);
+	        json.addProperty("historia", historia);
+	        json.addProperty("ataqueBasico", ataque);
+	        json.addProperty("puntosVida", vida);
+	        json.addProperty("iniciativa", iniciativa);
+	        json.addProperty("origen", origen);
+	        json.addProperty("arquetipo", arquetipo);
+
+	        OutputStream os = conn.getOutputStream();
+	        os.write(json.toString().getBytes());
+	        os.flush();
+	        os.close();
+
+	        int code = conn.getResponseCode();
+	        return code >= 200 && code < 300;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return false;
+	}
+	
+	public static Personaje getPersonajeById(int id) {
+
+	    try {
+	        URL url = new URL("http://localhost:8080/personajes/" + id);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	        conn.setRequestMethod("GET");
+
+	        if (conn.getResponseCode() == 200) {
+
+	            BufferedReader br = new BufferedReader(
+	                    new InputStreamReader(conn.getInputStream()));
+
+	            StringBuilder response = new StringBuilder();
+	            String line;
+
+	            while ((line = br.readLine()) != null) {
+	                response.append(line);
+	            }
+
+	            br.close();
+
+	            Gson gson = new Gson();
+	            return gson.fromJson(response.toString(), Personaje.class);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return null;
 	}
 }

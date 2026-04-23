@@ -88,8 +88,8 @@ public class EditObjetoDialog extends JDialog {
 
         guardar.setBackground(UIStyle.GOLD_BG);
         guardar.setForeground(UIStyle.TEXT_DARK);
-        cancelar.setBackground(UIStyle.GOLD_BG);
-        cancelar.setForeground(UIStyle.TEXT_DARK);
+        cancelar.setBackground(UIStyle.DANGER_RED);
+        cancelar.setForeground(Color.WHITE);
         
         guardar.addActionListener(e -> guardarCambios());
         cancelar.addActionListener(e -> dispose());

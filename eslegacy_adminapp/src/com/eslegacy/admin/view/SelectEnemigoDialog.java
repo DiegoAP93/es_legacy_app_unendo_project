@@ -57,8 +57,8 @@ public class SelectEnemigoDialog extends JDialog {
         
         continuar.setBackground(UIStyle.GOLD_BG);
         continuar.setForeground(UIStyle.TEXT_DARK);
-        cancelar.setBackground(UIStyle.GOLD_BG);
-        cancelar.setForeground(UIStyle.TEXT_DARK);
+        cancelar.setBackground(UIStyle.DANGER_RED);
+        cancelar.setForeground(Color.WHITE);
 
         continuar.addActionListener(e -> buscarEnemigo());
         cancelar.addActionListener(e -> dispose());
