@@ -18,7 +18,7 @@ public class SelectPersonajeDialog extends JDialog {
 	private Consumer<Personaje> onSelect;
 
     public SelectPersonajeDialog(JFrame parent, Consumer<Personaje> onSelect) {
-        super(parent, "Seleccionar Objeto", true);
+        super(parent, "Seleccionar Personaje", true);
         this.onSelect = onSelect;
 
         setSize(300, 150);
