@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta principal Ether & SteamBoys -->
+    <color name="gold_primary">#C8922A</color>
+    <color name="gold_dark">#A67620</color>
+    <color name="gold_light">#E8B84B</color>
+    <color name="brown_medium">#8B5E1A</color>
+    <color name="brown_dark">#5C3A0A</color>
+
+    <color name="bg_dark">#2A2A2A</color>
+    <color name="bg_medium">#333333</color>
+    <color name="bg_card">#3D3D3D</color>
+    <color name="bg_list">#7A5C28</color>
+
+    <color name="text_primary">#F0E0C0</color>
+    <color name="text_secondary">#C8B080</color>
+    <color name="text_gold">#E8B84B</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <color name="red_danger">#C0392B</color>
+    <color name="red_dark">#922B21</color>
+
+    <color name="toolbar_bg">#C8922A</color>
+    <color name="status_bar">#A67620</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>
