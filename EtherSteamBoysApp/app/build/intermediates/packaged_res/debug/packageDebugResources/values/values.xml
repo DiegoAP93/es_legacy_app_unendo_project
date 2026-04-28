@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="acess_es_legacy_logo_background">#FFFFFF</color>
+    <color name="bg_card">#333333</color>
+    <color name="bg_dark">#1D1D1B</color>
+    <color name="bg_list">#996633</color>
+    <color name="bg_medium">#333333</color>
+    <color name="black">#000000</color>
+    <color name="brown_dark">#1D1D1B</color>
+    <color name="brown_medium">#B27F4A</color>
+    <color name="gold_dark">#996633</color>
+    <color name="gold_light">#CC6633</color>
+    <color name="gold_primary">#CC9933</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="red_danger">#993333</color>
+    <color name="red_dark">#660000</color>
+    <color name="status_bar">#996633</color>
+    <color name="text_bronze">#996633</color>
+    <color name="text_gold">#CC9933</color>
+    <color name="text_primary">#CCCC99</color>
+    <color name="text_secondary">#CCCCFF</color>
+    <color name="text_silver">#9D9D9D</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="toolbar_bg">#CC9933</color>
+    <color name="white">#FFFFFF</color>
+    <string name="accs_logo_descrp">Logo</string>
+    <string name="actualizar_datos">ACTUALIZAR DATOS</string>
+    <string name="app_name">Ether &amp; SteamBoys Legacy</string>
+    <string name="character_image_descrip">Imagen personaje</string>
+    <string name="character_sheet_active_abilities">Habilidades Activas</string>
+    <string name="character_sheet_atk">Atk.</string>
+    <string name="character_sheet_hp">HP</string>
+    <string name="character_sheet_inic">Inic.</string>
+    <string name="character_sheet_story">Historia</string>
+    <string name="contrasena">CONTRASEÑA</string>
+    <string name="contrasena_actual">CONTRASEÑA ACTUAL</string>
+    <string name="correo">CORREO ELECTRÓNICO</string>
+    <string name="dados">DADOS</string>
+    <string name="dice_sim_info">Selecciona nº de caras y cantidad de dados</string>
+    <string name="enemigos">ENEMIGOS</string>
+    <string name="enemy_sheet_abilities">Ejemplos de habilidades</string>
+    <string name="enemy_sheet_description">Descripción</string>
+    <string name="enemy_sheet_drops">Objetos soltados</string>
+    <string name="error_campos">Por favor, rellena todos los campos</string>
+    <string name="error_conexion">Error de conexión con el servidor</string>
+    <string name="home">HOME</string>
+    <string name="home_button">Home</string>
+    <string name="iniciar_sesion">INICIAR SESIÓN</string>
+    <string name="inicio_sesion">INICIO SESIÓN</string>
+    <string name="item_sheet_description">Descripción:</string>
+    <string name="item_sheet_price">Precio:</string>
+    <string name="lanzar_dados">LANZAR DADOS</string>
+    <string name="login_tittle">INICIAR SESIÓN</string>
+    <string name="mi_perfil">MI PERFIL</string>
+    <string name="nombre">NOMBRE</string>
+    <string name="nombre_usuario">NOMBRE USUARIO</string>
+    <string name="nueva_contrasena">NUEVA CONTRASEÑA</string>
+    <string name="numero_caras">Número de caras</string>
+    <string name="numero_dados">Número de dados</string>
+    <string name="objetos">OBJETOS</string>
+    <string name="perfil">PERFIL</string>
+    <string name="personajes">PERSONAJES</string>
+    <string name="profile_full_name">Nombre completo</string>
+    <string name="profile_info_msg">Rellena los campos que desees modificar e inserta tu contraseña actual antes, para luego hacer clic.</string>
+    <string name="register_suscription_conf_text"><![CDATA[Deseo recibir notificaciones de Ether&SteamBoys sobre actualizaciones del juego, nuevos productos y cualquier información de interés sobre el juego y sus productos.]]></string>
+    <string name="registrar">REGISTRAR</string>
+    <string name="registro">REGISTRO</string>
+    <string name="resultado">Resultado</string>
+    <string name="salir">SALIR</string>
+    <string name="simulador_dados">Simulador de dados</string>
+    <string name="volver_home">Volver al inicio</string>
+    <style name="GoldButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/bg_button_gold</item>
+        <item name="android:textColor">@color/bg_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="backgroundTint">@null</item>
+    </style>
+    <style name="InputField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/gold_primary</item>
+        <item name="hintTextColor">@color/text_secondary</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+    </style>
+    <style name="RedButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/bg_button_red</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="backgroundTint">@null</item>
+    </style>
+    <style name="StatBadge">
+        <item name="android:background">@drawable/bg_stat_badge</item>
+        <item name="android:textColor">@color/bg_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="Theme.EtherSteamBoys" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/gold_primary</item>
+        <item name="colorPrimaryVariant">@color/gold_dark</item>
+        <item name="colorOnPrimary">@color/bg_dark</item>
+        <item name="colorSecondary">@color/brown_medium</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+        <item name="android:colorBackground">@color/bg_dark</item>
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
+    </style>
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/gold_primary</item>
+        <item name="titleTextColor">@color/bg_dark</item>
+        <item name="titleTextAppearance">@style/ToolbarTitleText</item>
+    </style>
+    <style name="ToolbarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/bg_dark</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+</resources>

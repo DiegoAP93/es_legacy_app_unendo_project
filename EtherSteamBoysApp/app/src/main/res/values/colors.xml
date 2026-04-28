@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gold_primary">#CC9933</color>
+    <color name="gold_dark">#996633</color>
+    <color name="gold_light">#CC6633</color>
+
+    <!-- Marrones base -->
+    <color name="brown_medium">#B27F4A</color>
+    <color name="brown_dark">#1D1D1B</color>
+
+    <!-- Fondos -->
+    <color name="bg_dark">#1D1D1B</color>
+    <color name="bg_medium">#333333</color>
+    <color name="bg_card">#333333</color>
+    <color name="bg_list">#996633</color>
+
+    <!-- Textos -->
+    <color name="text_primary">#CCCC99</color>
+    <color name="text_secondary">#CCCCFF</color>
+    <color name="text_gold">#CC9933</color>
+    <color name="text_silver">#9D9D9D</color>
+    <color name="text_bronze">#996633</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <!-- Estados / peligro -->
+    <color name="red_danger">#993333</color>
+    <color name="red_dark">#660000</color>
+
+    <!-- UI sistema -->
+    <color name="toolbar_bg">#CC9933</color>
+    <color name="status_bar">#996633</color>
+
+    <!-- Básicos -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+</resources>
