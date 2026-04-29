@@ -46,4 +46,13 @@
     <string name="login_tittle">INICIAR SESIÓN</string>
     <string name="register_suscription_conf_text"><![CDATA[Deseo recibir notificaciones de Ether&SteamBoys sobre actualizaciones del juego, nuevos productos y cualquier información de interés sobre el juego y sus productos.]]></string>
     <string name="character_image_descrip">Imagen personaje</string>
+    <string name="character_sheet_hp_tittle">HP</string>
+    <string name="character_sheet_atk_tittle">Atk.</string>
+    <string name="character_sheet_iniciative_tittle">Inic.</string>
+    <string name="character_sheet_story_tittle">Historia</string>
+    <string name="item_sheet_description_tittle">Descripción:</string>
+    <string name="item_sheet_price_tittle">Precio:</string>
+    <string name="enemy_sheet_description_title">Descripción:</string>
+    <string name="enemy_sheet_drops_title">Objetos soltados:</string>
+    <string name="enemy_sheet_abilities_title">Ejemplos de habilidades:</string>
 </resources>

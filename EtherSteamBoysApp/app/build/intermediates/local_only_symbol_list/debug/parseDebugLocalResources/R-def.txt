@@ -56,7 +56,7 @@ id rvPersonajes
 id spinnerCaras
 id toolbar
 id tvApodo
-id tvArquetipos
+id tvArquetipo
 id tvAtaque
 id tvCategoria
 id tvClase
@@ -67,9 +67,9 @@ id tvHP
 id tvHistoria
 id tvIniciativa
 id tvNombre
-id tvNombreCompleto
 id tvNombreUsuarioActual
 id tvObjetos
+id tvOrigen
 id tvPerfil
 id tvPersonajes
 id tvPrecio
@@ -105,9 +105,13 @@ string app_name
 string character_image_descrip
 string character_sheet_active_abilities
 string character_sheet_atk
+string character_sheet_atk_tittle
 string character_sheet_hp
+string character_sheet_hp_tittle
 string character_sheet_inic
+string character_sheet_iniciative_tittle
 string character_sheet_story
+string character_sheet_story_tittle
 string contrasena
 string contrasena_actual
 string correo
@@ -115,8 +119,11 @@ string dados
 string dice_sim_info
 string enemigos
 string enemy_sheet_abilities
+string enemy_sheet_abilities_title
 string enemy_sheet_description
+string enemy_sheet_description_title
 string enemy_sheet_drops
+string enemy_sheet_drops_title
 string error_campos
 string error_conexion
 string home
@@ -124,7 +131,9 @@ string home_button
 string iniciar_sesion
 string inicio_sesion
 string item_sheet_description
+string item_sheet_description_tittle
 string item_sheet_price
+string item_sheet_price_tittle
 string lanzar_dados
 string login_tittle
 string mi_perfil

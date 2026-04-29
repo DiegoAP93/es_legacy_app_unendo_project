@@ -2024,9 +2024,13 @@
     <string name="character_image_descrip">Imagen personaje</string>
     <string name="character_sheet_active_abilities">Habilidades Activas</string>
     <string name="character_sheet_atk">Atk.</string>
+    <string name="character_sheet_atk_tittle">Atk.</string>
     <string name="character_sheet_hp">HP</string>
+    <string name="character_sheet_hp_tittle">HP</string>
     <string name="character_sheet_inic">Inic.</string>
+    <string name="character_sheet_iniciative_tittle">Inic.</string>
     <string name="character_sheet_story">Historia</string>
+    <string name="character_sheet_story_tittle">Historia</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="contrasena">CONTRASEÑA</string>
     <string name="contrasena_actual">CONTRASEÑA ACTUAL</string>
@@ -2035,8 +2039,11 @@
     <string name="dice_sim_info">Selecciona nº de caras y cantidad de dados</string>
     <string name="enemigos">ENEMIGOS</string>
     <string name="enemy_sheet_abilities">Ejemplos de habilidades</string>
+    <string name="enemy_sheet_abilities_title">Ejemplos de habilidades:</string>
     <string name="enemy_sheet_description">Descripción</string>
+    <string name="enemy_sheet_description_title">Descripción:</string>
     <string name="enemy_sheet_drops">Objetos soltados</string>
+    <string name="enemy_sheet_drops_title">Objetos soltados:</string>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
   </string>
@@ -2053,7 +2060,9 @@
     <string name="iniciar_sesion">INICIAR SESIÓN</string>
     <string name="inicio_sesion">INICIO SESIÓN</string>
     <string name="item_sheet_description">Descripción:</string>
+    <string name="item_sheet_description_tittle">Descripción:</string>
     <string name="item_sheet_price">Precio:</string>
+    <string name="item_sheet_price_tittle">Precio:</string>
     <string name="item_view_role_description">Tab</string>
     <string name="lanzar_dados">LANZAR DADOS</string>
     <string name="login_tittle">INICIAR SESIÓN</string>

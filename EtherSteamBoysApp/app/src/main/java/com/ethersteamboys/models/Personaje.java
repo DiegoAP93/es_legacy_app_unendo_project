@@ -3,24 +3,23 @@ package com.ethersteamboys.models;
 import java.util.List;
 
 public class Personaje {
-    private int id;
+    private int idPersonaje;   // PK real del backend
     private String nombre;
-    private String apodo;
     private String clase;
     private String rareza;
     private String historia;
-    private Integer puntosVida;      // campo real del backend
-    private String ataqueBasico;     // campo real del backend
+    private Integer puntosVida;
+    private String ataqueBasico;
     private String iniciativa;
-    private String arquetipo;        // campo real del backend (singular)
+    private String arquetipo;
     private String origen;
     private String imagenUrl;
     private List<Habilidad> habilidades;
 
     // Getters
-    public int getId() { return id; }
+    public int getId() { return idPersonaje; }   // alias cómodo para la app
+    public int getIdPersonaje() { return idPersonaje; }
     public String getNombre() { return nombre; }
-    public String getApodo() { return apodo; }
     public String getClase() { return clase; }
     public String getRareza() { return rareza; }
     public String getHistoria() { return historia; }

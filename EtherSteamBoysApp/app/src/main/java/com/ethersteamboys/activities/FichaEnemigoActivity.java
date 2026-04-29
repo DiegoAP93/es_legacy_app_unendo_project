@@ -1,7 +1,6 @@
 package com.ethersteamboys.activities;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,7 +35,11 @@ public class FichaEnemigoActivity extends AppCompatActivity {
         if (nombre != null) binding.tvToolbarNombre.setText(nombre.toUpperCase());
         binding.btnHome.setOnClickListener(v -> irAHome());
 
-        if (id != -1) cargarFicha(id);
+        if (id != -1) {
+            cargarFicha(id);
+        } else {
+            Toast.makeText(this, "Error: ID de enemigo no recibido", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void cargarFicha(int id) {
@@ -47,7 +50,8 @@ public class FichaEnemigoActivity extends AppCompatActivity {
                     mostrarFicha(response.body());
                 } else {
                     Toast.makeText(FichaEnemigoActivity.this,
-                            "Error al cargar el enemigo (código " + response.code() + ")", Toast.LENGTH_SHORT).show();
+                            "Error al cargar el enemigo (código " + response.code() + ")",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -60,44 +64,47 @@ public class FichaEnemigoActivity extends AppCompatActivity {
     }
 
     private void mostrarFicha(Enemigo e) {
+        float dp = getResources().getDisplayMetrics().density;
+
+        // Nombre y descripción
         binding.tvNombre.setText(e.getNombre() != null ? e.getNombre() : "");
         binding.tvDescripcion.setText(e.getDescripcion() != null ? e.getDescripcion() : "");
 
-        // Objetos soltados (lista de Objeto)
+        // Objetos soltados — solo nombre, con prefijo "#"
         binding.llObjetos.removeAllViews();
         if (e.getObjetos() != null && !e.getObjetos().isEmpty()) {
             for (Objeto obj : e.getObjetos()) {
-                addTextoLista(binding.llObjetos, "# " + obj.getNombre(), false);
+                addItemLista(binding.llObjetos, "    # " + obj.getNombre(), dp, false);
             }
         } else {
-            addTextoLista(binding.llObjetos, "Ninguno", true);
+            addItemLista(binding.llObjetos, "Ninguno", dp, true);
         }
 
-        // Ejemplos de habilidades (String del backend)
+        // Ejemplos de habilidades — split por coma, trim de cada elemento
         binding.llHabilidades.removeAllViews();
         if (e.getEjemplosHabilidades() != null && !e.getEjemplosHabilidades().isEmpty()) {
-            // Puede venir como texto separado por saltos de línea o comas
-            String[] habs = e.getEjemplosHabilidades().split("[,\n]+");
+            String[] habs = e.getEjemplosHabilidades().split(",");
             for (String hab : habs) {
-                String h = hab.trim();
-                if (!h.isEmpty()) addTextoLista(binding.llHabilidades, "· " + h, true);
+                String texto = hab.trim();
+                if (!texto.isEmpty()) {
+                    addItemLista(binding.llHabilidades, "·" + texto, dp, false);
+                }
             }
         } else {
-            addTextoLista(binding.llHabilidades, "Sin ejemplos registrados", true);
+            addItemLista(binding.llHabilidades, "Sin ejemplos registrados", dp, true);
         }
     }
 
-    private void addTextoLista(LinearLayout container, String texto, boolean italic) {
+    private void addItemLista(LinearLayout container, String texto, float dp, boolean gris) {
         TextView tv = new TextView(this);
         tv.setText(texto);
-        tv.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
+        tv.setTextColor(ContextCompat.getColor(this,
+                gris ? R.color.text_secondary : R.color.text_primary));
         tv.setTextSize(13f);
-        if (italic) tv.setTypeface(null, Typeface.ITALIC);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        float density = getResources().getDisplayMetrics().density;
-        params.setMargins(0, 0, 0, (int)(4 * density));
+        params.setMargins(0, 0, 0, (int)(6 * dp));
         tv.setLayoutParams(params);
         container.addView(tv);
     }

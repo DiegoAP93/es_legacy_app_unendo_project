@@ -22,7 +22,7 @@
             android:layout_height="80dp"
             android:scaleType="centerCrop"
             android:background="@color/brown_dark"
-            android:contentDescription="@string/character_image_descrip" />
+            android:contentDescription="Imagen personaje" />
 
         <!-- Info -->
         <LinearLayout

@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_objetos.xml",
+        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_objetos.xml"
+    },
+    {
         "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_home.xml",
         "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_home.xml"
     },
@@ -8,68 +12,16 @@
         "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_personajes.xml"
     },
     {
-        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_ficha_objeto.xml",
-        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_ficha_objeto.xml"
-    },
-    {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_registro.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_registro.xml"
-    },
-    {
-        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\spinner_item.xml",
-        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\spinner_item.xml"
-    },
-    {
-        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_perfil.xml",
-        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_perfil.xml"
-    },
-    {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_ficha_objeto.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_ficha_objeto.xml"
-    },
-    {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/item_personaje.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/item_personaje.xml"
-    },
-    {
-        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\item_personaje.xml",
-        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\item_personaje.xml"
-    },
-    {
-        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_registro.xml",
-        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_registro.xml"
-    },
-    {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_acceso.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_acceso.xml"
-    },
-    {
-        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_objetos.xml",
-        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_objetos.xml"
-    },
-    {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_personajes.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_personajes.xml"
-    },
-    {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_enemigos.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_enemigos.xml"
-    },
-    {
         "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\spinner_dropdown_item.xml",
         "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\spinner_dropdown_item.xml"
     },
     {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_objetos.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_objetos.xml"
+        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_ficha_objeto.xml",
+        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_ficha_objeto.xml"
     },
     {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_perfil.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_perfil.xml"
-    },
-    {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_ficha_personaje.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_ficha_personaje.xml"
+        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\spinner_item.xml",
+        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\spinner_item.xml"
     },
     {
         "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_ficha_personaje.xml",
@@ -80,16 +32,16 @@
         "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_acceso.xml"
     },
     {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_dados.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_dados.xml"
-    },
-    {
-        "merged": "com.ethersteamboys.app-mergeDebugResources-32:/layout/activity_login.xml",
-        "source": "com.ethersteamboys.app-main-35:/layout/activity_login.xml"
+        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_perfil.xml",
+        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_perfil.xml"
     },
     {
         "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_enemigos.xml",
         "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_enemigos.xml"
+    },
+    {
+        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\item_personaje.xml",
+        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\item_personaje.xml"
     },
     {
         "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_dados.xml",
@@ -102,6 +54,10 @@
     {
         "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_login.xml",
         "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_registro.xml",
+        "source": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-main-35:\\layout\\activity_registro.xml"
     },
     {
         "merged": "C:\\Users\\dynod\\.gradle\\daemon\\8.13\\com.ethersteamboys.app-mergeDebugResources-32:\\layout\\activity_ficha_enemigo.xml",

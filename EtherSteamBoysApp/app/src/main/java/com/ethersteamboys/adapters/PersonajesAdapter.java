@@ -41,32 +41,8 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Personaje p = personajes.get(position);
         holder.tvNombre.setText(p.getNombre() != null ? p.getNombre() : "");
-        holder.tvApodo.setText(p.getApodo() != null ? p.getApodo() : "");
         holder.tvClase.setText(p.getClase() != null ? p.getClase() : "");
-        String rareza = p.getRareza() != null ? p.getRareza() : "";
-
-        // Cambiar color según rareza
-        int colorRes;
-
-        switch (rareza) {
-            case "SSR":
-                colorRes = R.color.text_gold;
-                break;
-            case "SR":
-                colorRes = R.color.text_silver;
-                break;
-            case "R":
-                colorRes = R.color.text_bronze;
-                break;
-            default:
-                colorRes = R.color.text_secondary;
-                break;
-        }
-
-        holder.tvRareza.setTextColor(
-                holder.itemView.getContext().getColor(colorRes)
-        );
-        holder.tvRareza.setText(rareza);
+        holder.tvRareza.setText(p.getRareza() != null ? p.getRareza() : "");
 
         if (p.getImagenUrl() != null && !p.getImagenUrl().isEmpty()) {
             Glide.with(holder.ivPersonaje.getContext())

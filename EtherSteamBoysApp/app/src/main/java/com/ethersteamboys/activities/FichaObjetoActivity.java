@@ -30,7 +30,11 @@ public class FichaObjetoActivity extends AppCompatActivity {
         if (nombre != null) binding.tvToolbarNombre.setText(nombre.toUpperCase());
         binding.btnHome.setOnClickListener(v -> irAHome());
 
-        if (id != -1) cargarFicha(id);
+        if (id != -1) {
+            cargarFicha(id);
+        } else {
+            Toast.makeText(this, "Error: ID de objeto no recibido", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void cargarFicha(int id) {
@@ -38,14 +42,11 @@ public class FichaObjetoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Objeto> call, Response<Objeto> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Objeto o = response.body();
-                    binding.tvNombre.setText(o.getNombre() != null ? o.getNombre() : "");
-                    binding.tvCategoria.setText(o.getCategoria() != null ? o.getCategoria() : "");
-                    binding.tvDescripcion.setText(o.getDescripcion() != null ? o.getDescripcion() : "");
-                    binding.tvPrecio.setText(o.getPrecio() + " Monedas de Oro");
+                    mostrarFicha(response.body());
                 } else {
                     Toast.makeText(FichaObjetoActivity.this,
-                            "Error al cargar el objeto (código " + response.code() + ")", Toast.LENGTH_SHORT).show();
+                            "Error al cargar el objeto (código " + response.code() + ")",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -55,6 +56,18 @@ public class FichaObjetoActivity extends AppCompatActivity {
                         "Error de conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void mostrarFicha(Objeto o) {
+        binding.tvNombre.setText(o.getNombre() != null ? o.getNombre() : "");
+        binding.tvCategoria.setText(o.getCategoria() != null ? o.getCategoria() : "");
+        binding.tvDescripcion.setText(o.getDescripcion() != null ? o.getDescripcion() : "");
+
+        if (o.getPrecio() != null) {
+            binding.tvPrecio.setText(o.getPrecio() + " Monedas de Oro");
+        } else {
+            binding.tvPrecio.setText("Sin precio");
+        }
     }
 
     private void irAHome() {

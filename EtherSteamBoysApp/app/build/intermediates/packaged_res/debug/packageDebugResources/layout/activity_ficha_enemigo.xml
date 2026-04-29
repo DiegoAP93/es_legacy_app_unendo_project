@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:background="@color/bg_dark">
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/ToolbarStyle"
@@ -37,69 +38,78 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- Nombre -->
             <TextView
                 android:id="@+id/tvNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="12dp" />
 
+            <!-- Etiqueta Descripción -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/enemy_sheet_description"
+                android:text="@string/enemy_sheet_description_title"
                 android:textColor="@color/text_gold"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="6dp" />
 
+            <!-- Texto descripción -->
             <TextView
                 android:id="@+id/tvDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_primary"
                 android:textSize="13sp"
-                android:lineSpacingMultiplier="1.4"
-                android:layout_marginBottom="16dp" />
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="20dp" />
 
+            <!-- Etiqueta Objetos soltados -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/enemy_sheet_drops"
+                android:text="@string/enemy_sheet_drops_title"
                 android:textColor="@color/text_gold"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="6dp" />
+                android:layout_marginBottom="8dp" />
 
+            <!-- Lista dinámica de objetos -->
             <LinearLayout
                 android:id="@+id/llObjetos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="20dp" />
 
+            <!-- Etiqueta Ejemplos de habilidades -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/enemy_sheet_abilities"
+                android:text="@string/enemy_sheet_abilities_title"
                 android:textColor="@color/text_gold"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="6dp" />
+                android:layout_marginBottom="8dp" />
 
+            <!-- Lista dinámica de habilidades -->
             <LinearLayout
                 android:id="@+id/llHabilidades"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:paddingBottom="8dp" />
 
         </LinearLayout>
     </ScrollView>

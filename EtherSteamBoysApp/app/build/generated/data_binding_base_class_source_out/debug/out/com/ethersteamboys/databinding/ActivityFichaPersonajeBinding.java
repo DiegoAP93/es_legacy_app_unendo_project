@@ -31,7 +31,7 @@ public final class ActivityFichaPersonajeBinding implements ViewBinding {
   public final Toolbar toolbar;
 
   @NonNull
-  public final TextView tvArquetipos;
+  public final TextView tvArquetipo;
 
   @NonNull
   public final TextView tvAtaque;
@@ -49,7 +49,10 @@ public final class ActivityFichaPersonajeBinding implements ViewBinding {
   public final TextView tvIniciativa;
 
   @NonNull
-  public final TextView tvNombreCompleto;
+  public final TextView tvNombre;
+
+  @NonNull
+  public final TextView tvOrigen;
 
   @NonNull
   public final TextView tvRareza;
@@ -59,21 +62,22 @@ public final class ActivityFichaPersonajeBinding implements ViewBinding {
 
   private ActivityFichaPersonajeBinding(@NonNull LinearLayout rootView,
       @NonNull ImageButton btnHome, @NonNull LinearLayout llHabilidades, @NonNull Toolbar toolbar,
-      @NonNull TextView tvArquetipos, @NonNull TextView tvAtaque, @NonNull TextView tvClase,
+      @NonNull TextView tvArquetipo, @NonNull TextView tvAtaque, @NonNull TextView tvClase,
       @NonNull TextView tvHP, @NonNull TextView tvHistoria, @NonNull TextView tvIniciativa,
-      @NonNull TextView tvNombreCompleto, @NonNull TextView tvRareza,
+      @NonNull TextView tvNombre, @NonNull TextView tvOrigen, @NonNull TextView tvRareza,
       @NonNull TextView tvToolbarNombre) {
     this.rootView = rootView;
     this.btnHome = btnHome;
     this.llHabilidades = llHabilidades;
     this.toolbar = toolbar;
-    this.tvArquetipos = tvArquetipos;
+    this.tvArquetipo = tvArquetipo;
     this.tvAtaque = tvAtaque;
     this.tvClase = tvClase;
     this.tvHP = tvHP;
     this.tvHistoria = tvHistoria;
     this.tvIniciativa = tvIniciativa;
-    this.tvNombreCompleto = tvNombreCompleto;
+    this.tvNombre = tvNombre;
+    this.tvOrigen = tvOrigen;
     this.tvRareza = tvRareza;
     this.tvToolbarNombre = tvToolbarNombre;
   }
@@ -123,9 +127,9 @@ public final class ActivityFichaPersonajeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tvArquetipos;
-      TextView tvArquetipos = ViewBindings.findChildViewById(rootView, id);
-      if (tvArquetipos == null) {
+      id = R.id.tvArquetipo;
+      TextView tvArquetipo = ViewBindings.findChildViewById(rootView, id);
+      if (tvArquetipo == null) {
         break missingId;
       }
 
@@ -159,9 +163,15 @@ public final class ActivityFichaPersonajeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tvNombreCompleto;
-      TextView tvNombreCompleto = ViewBindings.findChildViewById(rootView, id);
-      if (tvNombreCompleto == null) {
+      id = R.id.tvNombre;
+      TextView tvNombre = ViewBindings.findChildViewById(rootView, id);
+      if (tvNombre == null) {
+        break missingId;
+      }
+
+      id = R.id.tvOrigen;
+      TextView tvOrigen = ViewBindings.findChildViewById(rootView, id);
+      if (tvOrigen == null) {
         break missingId;
       }
 
@@ -178,8 +188,8 @@ public final class ActivityFichaPersonajeBinding implements ViewBinding {
       }
 
       return new ActivityFichaPersonajeBinding((LinearLayout) rootView, btnHome, llHabilidades,
-          toolbar, tvArquetipos, tvAtaque, tvClase, tvHP, tvHistoria, tvIniciativa,
-          tvNombreCompleto, tvRareza, tvToolbarNombre);
+          toolbar, tvArquetipo, tvAtaque, tvClase, tvHP, tvHistoria, tvIniciativa, tvNombre,
+          tvOrigen, tvRareza, tvToolbarNombre);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

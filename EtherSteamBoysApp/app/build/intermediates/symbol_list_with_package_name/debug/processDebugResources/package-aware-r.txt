@@ -3628,7 +3628,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tvApodo
-id tvArquetipos
+id tvArquetipo
 id tvAtaque
 id tvCategoria
 id tvClase
@@ -3639,9 +3639,9 @@ id tvHP
 id tvHistoria
 id tvIniciativa
 id tvNombre
-id tvNombreCompleto
 id tvNombreUsuarioActual
 id tvObjetos
+id tvOrigen
 id tvPerfil
 id tvPersonajes
 id tvPrecio
@@ -3939,9 +3939,13 @@ string character_counter_pattern
 string character_image_descrip
 string character_sheet_active_abilities
 string character_sheet_atk
+string character_sheet_atk_tittle
 string character_sheet_hp
+string character_sheet_hp_tittle
 string character_sheet_inic
+string character_sheet_iniciative_tittle
 string character_sheet_story
+string character_sheet_story_tittle
 string clear_text_end_icon_content_description
 string contrasena
 string contrasena_actual
@@ -3950,8 +3954,11 @@ string dados
 string dice_sim_info
 string enemigos
 string enemy_sheet_abilities
+string enemy_sheet_abilities_title
 string enemy_sheet_description
+string enemy_sheet_description_title
 string enemy_sheet_drops
+string enemy_sheet_drops_title
 string error_a11y_label
 string error_campos
 string error_conexion
@@ -3966,7 +3973,9 @@ string icon_content_description
 string iniciar_sesion
 string inicio_sesion
 string item_sheet_description
+string item_sheet_description_tittle
 string item_sheet_price
+string item_sheet_price_tittle
 string item_view_role_description
 string lanzar_dados
 string login_tittle
