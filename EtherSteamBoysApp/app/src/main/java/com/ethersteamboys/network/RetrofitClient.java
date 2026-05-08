@@ -8,8 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    // 10.0.2.2 = localhost del PC desde el emulador de Android Studio
-    // Si usas dispositivo físico en la misma red WiFi, cambia a la IP local de tu PC (ej: 192.168.1.X)
+    // 10.0.2.2:8080 {localhost}
+    // 192.168.56.1:8080 {si finalmente usamos un móvil físico}
     private static final String BASE_URL = "http://10.0.2.2:8080/";
 
     private static Retrofit retrofit = null;
