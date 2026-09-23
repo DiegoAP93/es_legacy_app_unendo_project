@@ -1,1 +1,29 @@
-/.metadata/
+# Android / Gradle
+.gradle/
+build/
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+
+# Java compiled files
+*.class
+
+# Eclipse generated files
+bin/
+out/
+
+# Maven
+target/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment / secrets
+.env
+.env.*
